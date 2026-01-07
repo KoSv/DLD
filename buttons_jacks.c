@@ -61,6 +61,8 @@ uint8_t flag_ignore_revdown[2]={0,0};
 
 uint32_t flag_acknowlegde_qcm=0;
 
+uint32_t ram_clear_interval=11000; //
+
 void init_inputread_timer(void){
 	TIM_TimeBaseInitTypeDef  tim;
 
@@ -538,7 +540,7 @@ void INFREVBUTTONJACK_PINGBUT_IRQHandler(void)
 
 	if (RAM_CLEAR_CH1_BUTTONS)
 	{
-		if (ch1_clear_ctr++>54000) {
+		if (ch1_clear_ctr++>ram_clear_interval) {
 			flag_ignore_infdown[0]=1;
 			flag_ignore_revdown[0]=1;
 
@@ -561,7 +563,7 @@ void INFREVBUTTONJACK_PINGBUT_IRQHandler(void)
 
 	if (RAM_CLEAR_CH2_BUTTONS)
 	{
-		if (ch2_clear_ctr++>54000) {
+		if (ch2_clear_ctr++>ram_clear_interval) {
 			flag_ignore_infdown[1]=1;
 			flag_ignore_revdown[1]=1;
 

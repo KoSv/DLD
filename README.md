@@ -209,3 +209,8 @@ I would like to see others build and modify the DLD and DLD-influenced works, in
 ## Guidelines for derivative works
 
 Do not include the text "4ms" or "4ms Company" or the graphic 4ms logo on any derivative works. This includes faceplates, enclosures, or front-panels. It's OK (but not required) to include the text "Dual Looping Delay" or "DLD" if you wish.
+
+
+
+# my python run
+PYTHONPATH=/Users/koko/Projekte/EE/DLD_work/DLD PATH="/opt/homebrew/anaconda3/envs/myenv/bin:$PATH" make wav 

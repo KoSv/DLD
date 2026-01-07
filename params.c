@@ -635,38 +635,76 @@ float adjust_time_by_switch(float val, uint8_t channel){
 
 float get_clk_div_nominal(uint16_t adc_val)
 {
-	if (adc_val<=40) //was 150
+	// if (adc_val<=40) //was 150
+	// 	return(P_1); //1
+	// // else if (adc_val<=176) //was 310
+	// // 	return(P_2); //1.5
+	// else if (adc_val<=471)
+	// 	return(P_3); //2
+	// // else if (adc_val<=780)
+	// // 	return(P_4); //3
+	// else if (adc_val<=1076)
+	// 	return(P_5); //4
+	// // else if (adc_val<=1368)
+	// // 	return(P_6); //5
+	// // else if (adc_val<=1664)
+	// // 	return(P_7); //6
+	// // else if (adc_val<=1925)
+	// // 	return(P_8); //7
+	// else if (adc_val<=2179) // Center
+	// 	return(P_9); //8
+	// // else if (adc_val<=2448)
+	// // 	return(P_10); //9
+	// // else if (adc_val<=2714)
+	// // 	return(P_11); //10
+	// // else if (adc_val<=2991)
+	// // 	return(P_12); //11
+	// // else if (adc_val<=3276)
+	// // 	return(P_13); //12
+	// // else if (adc_val<=3586)
+	// // 	return(P_14); //13
+	// // else if (adc_val<=3879)
+	// // 	return(P_15); //14
+	// // else if (adc_val<=4046)
+	// // 	return(P_16); //15
+	// else
+	// 	return(P_17); //16
+
+
+
+
+		if (adc_val<=40) //was 150
 		return(P_1); //1
-	else if (adc_val<=176) //was 310
-		return(P_2); //1.5
-	else if (adc_val<=471)
-		return(P_3); //2
-	else if (adc_val<=780)
-		return(P_4); //3
-	else if (adc_val<=1076)
-		return(P_5); //4
+	// else if (adc_val<=176) //was 310
+	// 	return(P_2); //1.5
 	else if (adc_val<=1368)
-		return(P_6); //5
-	else if (adc_val<=1664)
-		return(P_7); //6
-	else if (adc_val<=1925)
-		return(P_8); //7
+		return(P_3); //2
+	// else if (adc_val<=780)
+	// 	return(P_4); //3
 	else if (adc_val<=2179) // Center
+		return(P_5); //4
+	// else if (adc_val<=1368)
+	// 	return(P_6); //5
+	// else if (adc_val<=1664)
+	// 	return(P_7); //6
+	// else if (adc_val<=1925)
+	// 	return(P_8); //7
+	else if (adc_val<=3586) 
 		return(P_9); //8
-	else if (adc_val<=2448)
-		return(P_10); //9
-	else if (adc_val<=2714)
-		return(P_11); //10
-	else if (adc_val<=2991)
-		return(P_12); //11
-	else if (adc_val<=3276)
-		return(P_13); //12
-	else if (adc_val<=3586)
-		return(P_14); //13
-	else if (adc_val<=3879)
-		return(P_15); //14
-	else if (adc_val<=4046)
-		return(P_16); //15
+	// else if (adc_val<=2448)
+	// 	return(P_10); //9
+	// else if (adc_val<=2714)
+	// 	return(P_11); //10
+	// else if (adc_val<=2991)
+	// 	return(P_12); //11
+	// else if (adc_val<=3276)
+	// 	return(P_13); //12
+	// else if (adc_val<=3586)
+	// 	return(P_14); //13
+	// else if (adc_val<=3879)
+	// 	return(P_15); //14
+	// else if (adc_val<=4046)
+	// 	return(P_16); //15
 	else
 		return(P_17); //16
 }

@@ -67,7 +67,7 @@ CFLAGS +=  -mfpu=fpv4-sp-d16 -fsingle-precision-constant -Wdouble-promotion
 AFLAGS  = -mlittle-endian -mthumb -mcpu=cortex-m4 
 
 LDSCRIPT = $(DEVICE)/$(LOADFILE)
-LFLAGS  = -Map main.map -nostartfiles -T $(LDSCRIPT)
+LFLAGS  = -Map main.map -T $(LDSCRIPT)
 
 
 all: Makefile $(BIN) $(HEX)
@@ -103,11 +103,11 @@ clean:
 wav: fsk-wav
 
 qpsk-wav: $(BIN)
-	python stm_audio_bootloader/qpsk/encoder.py \
+	python3 stm_audio_bootloader/qpsk/encoder.py \
 		-t stm32f4 -s 48000 -b 12000 -c 6000 -p 256 \
 		$(BIN)
 
 fsk-wav: $(BIN)
-	python stm_audio_bootloader/fsk/encoder.py \
+	python3 stm_audio_bootloader/fsk/encoder.py \
 		-s 48000 -b 16 -n 8 -z 4 -p 256 -g 16384 -k 1800 \
 		$(BIN)

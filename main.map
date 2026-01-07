@@ -1,0 +1,1388 @@
+
+There are no discarded input sections
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+RAM              0x20000000         0x00020000         xrw
+CCMRAM           0x10000000         0x00010000         xrw
+FLASH            0x08008000         0x000f8000         xr
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x20020000                        _estack = 0x20020000
+                0x00000000                        _Min_Heap_Size = 0x0
+                0x00000400                        _Min_Stack_Size = 0x400
+
+.isr_vector     0x08008000      0x1b0
+                0x08008000                        . = ALIGN (0x10)
+ *(.isr_vector)
+ .isr_vector    0x08008000      0x1ac build/stm32/device/src/startup_stm32f427_437xx.o
+                0x08008000                g_pfnVectors
+                0x080081b0                        . = ALIGN (0x10)
+ *fill*         0x080081ac        0x4 
+
+.flashtext      0x080081b0        0x0
+                0x080081b0                        . = ALIGN (0x10)
+ *(.flashtext)
+                0x080081b0                        . = ALIGN (0x10)
+
+.text           0x080081b0    0x151b0
+                0x080081b0                        . = ALIGN (0x10)
+ *(.text)
+ .text          0x080081b0       0xc0 build/stm32/periph/src/misc.o
+                0x080081b0                NVIC_PriorityGroupConfig
+                0x080081c4                NVIC_Init
+                0x08008228                NVIC_SetVectorTable
+                0x0800823c                NVIC_SystemLPConfig
+                0x08008258                SysTick_CLKSourceConfig
+ .text          0x08008270      0x3d4 build/stm32/periph/src/stm32f4xx_adc.o
+                0x08008270                ADC_DeInit
+                0x0800828c                ADC_Init
+                0x080082dc                ADC_StructInit
+                0x080082f0                ADC_CommonInit
+                0x0800831c                ADC_CommonStructInit
+                0x08008328                ADC_Cmd
+                0x0800833c                ADC_AnalogWatchdogCmd
+                0x0800834c                ADC_AnalogWatchdogThresholdsConfig
+                0x08008354                ADC_AnalogWatchdogSingleChannelConfig
+                0x08008360                ADC_TempSensorVrefintCmd
+                0x0800837c                ADC_VBATCmd
+                0x08008398                ADC_RegularChannelConfig
+                0x08008434                ADC_SoftwareStartConv
+                0x08008440                ADC_GetSoftwareStartConvStatus
+                0x08008448                ADC_EOCOnEachRegularChannelCmd
+                0x0800845c                ADC_ContinuousModeCmd
+                0x08008470                ADC_DiscModeChannelCountConfig
+                0x08008480                ADC_DiscModeCmd
+                0x08008494                ADC_GetConversionValue
+                0x0800849c                ADC_GetMultiModeConversionValue
+                0x080084a8                ADC_DMACmd
+                0x080084bc                ADC_DMARequestAfterLastTransferCmd
+                0x080084d0                ADC_MultiModeDMARequestAfterLastTransferCmd
+                0x080084ec                ADC_InjectedChannelConfig
+                0x08008558                ADC_InjectedSequencerLengthConfig
+                0x08008568                ADC_SetInjectedOffset
+                0x08008580                ADC_ExternalTrigInjectedConvConfig
+                0x0800858c                ADC_ExternalTrigInjectedConvEdgeConfig
+                0x08008598                ADC_SoftwareStartInjectedConv
+                0x080085a4                ADC_GetSoftwareStartInjectedConvCmdStatus
+                0x080085ac                ADC_AutoInjectedConvCmd
+                0x080085c0                ADC_InjectedDiscModeCmd
+                0x080085d4                ADC_GetInjectedConversionValue
+                0x080085f0                ADC_ITConfig
+                0x0800860c                ADC_GetFlagStatus
+                0x08008618                ADC_ClearFlag
+                0x08008620                ADC_GetITStatus
+                0x0800863c                ADC_ClearITPendingBit
+ .text          0x08008644      0x1ec build/stm32/periph/src/stm32f4xx_dac.o
+                0x08008644                DAC_DeInit
+                0x08008660                DAC_Init
+                0x0800868c                DAC_StructInit
+                0x08008698                DAC_Cmd
+                0x080086bc                DAC_SoftwareTriggerCmd
+                0x080086e4                DAC_DualSoftwareTriggerCmd
+                0x08008700                DAC_WaveGenerationCmd
+                0x08008720                DAC_SetChannel1Data
+                0x08008740                DAC_SetChannel2Data
+                0x08008760                DAC_SetDualChannelData
+                0x08008778                DAC_GetDataOutputValue
+                0x0800879c                DAC_DMACmd
+                0x080087c4                DAC_ITConfig
+                0x080087e4                DAC_GetFlagStatus
+                0x080087fc                DAC_ClearFlag
+                0x08008808                DAC_GetITStatus
+                0x08008824                DAC_ClearITPendingBit
+ .text          0x08008830      0x330 build/stm32/periph/src/stm32f4xx_dma.o
+                0x08008830                DMA_DeInit
+                0x0800893c                DMA_Init
+                0x08008994                DMA_StructInit
+                0x080089b8                DMA_Cmd
+                0x080089cc                DMA_PeriphIncOffsetSizeConfig
+                0x080089e0                DMA_FlowControllerConfig
+                0x080089f4                DMA_SetCurrDataCounter
+                0x080089f8                DMA_GetCurrDataCounter
+                0x08008a00                DMA_DoubleBufferModeConfig
+                0x08008a18                DMA_DoubleBufferModeCmd
+                0x08008a2c                DMA_MemoryTargetConfig
+                0x08008a38                DMA_GetCurrentMemoryTarget
+                0x08008a40                DMA_GetCmdStatus
+                0x08008a48                DMA_GetFIFOStatus
+                0x08008a50                DMA_GetFlagStatus
+                0x08008a80                DMA_ClearFlag
+                0x08008aa8                DMA_ITConfig
+                0x08008ae8                DMA_GetITStatus
+                0x08008b38                DMA_ClearITPendingBit
+ .text          0x08008b60       0xfc build/stm32/periph/src/stm32f4xx_exti.o
+                0x08008b60                EXTI_DeInit
+                0x08008b7c                EXTI_Init
+                0x08008bfc                EXTI_StructInit
+                0x08008c0c                EXTI_GenerateSWInterrupt
+                0x08008c1c                EXTI_GetFlagStatus
+                0x08008c30                EXTI_ClearFlag
+                0x08008c3c                EXTI_GetITStatus
+                0x08008c50                EXTI_ClearITPendingBit
+ .text          0x08008c5c      0x580 build/stm32/periph/src/stm32f4xx_flash.o
+                0x08008c5c                FLASH_SetLatency
+                0x08008c68                FLASH_PrefetchBufferCmd
+                0x08008c84                FLASH_InstructionCacheCmd
+                0x08008ca0                FLASH_DataCacheCmd
+                0x08008cbc                FLASH_InstructionCacheReset
+                0x08008ccc                FLASH_DataCacheReset
+                0x08008cdc                FLASH_Unlock
+                0x08008cfc                FLASH_Lock
+                0x08008d0c                FLASH_OB_Unlock
+                0x08008d28                FLASH_OB_Lock
+                0x08008d38                FLASH_OB_PCROPSelectionConfig
+                0x08008d4c                FLASH_OB_BootConfig
+                0x08008d64                FLASH_OB_BORConfig
+                0x08008d7c                FLASH_OB_GetUser
+                0x08008d8c                FLASH_OB_GetWRP
+                0x08008d98                FLASH_OB_GetWRP1
+                0x08008da4                FLASH_OB_GetPCROP
+                0x08008db0                FLASH_OB_GetPCROP1
+                0x08008dbc                FLASH_OB_GetRDP
+                0x08008dcc                FLASH_OB_GetBOR
+                0x08008ddc                FLASH_ITConfig
+                0x08008df4                FLASH_GetFlagStatus
+                0x08008e08                FLASH_ClearFlag
+                0x08008e14                FLASH_GetStatus
+                0x08008e54                FLASH_WaitForLastOperation
+                0x08008e78                FLASH_EraseSector
+                0x08008ed4                FLASH_EraseAllSectors
+                0x08008f28                FLASH_EraseAllBank1Sectors
+                0x08008f74                FLASH_EraseAllBank2Sectors
+                0x08008fc0                FLASH_ProgramDoubleWord
+                0x08009004                FLASH_ProgramWord
+                0x08009044                FLASH_ProgramHalfWord
+                0x08009084                FLASH_ProgramByte
+                0x080090c0                FLASH_OB_WRPConfig
+                0x080090f4                FLASH_OB_WRP1Config
+                0x08009128                FLASH_OB_PCROPConfig
+                0x08009154                FLASH_OB_PCROP1Config
+                0x08009180                FLASH_OB_RDPConfig
+                0x08009198                FLASH_OB_UserConfig
+                0x080091c8                FLASH_OB_Launch
+ .text          0x080091dc      0x760 build/stm32/periph/src/stm32f4xx_fmc.o
+                0x080091dc                FMC_NORSRAMDeInit
+                0x08009204                FMC_NORSRAMInit
+                0x080092ec                FMC_NORSRAMStructInit
+                0x08009344                FMC_NORSRAMCmd
+                0x0800936c                FMC_NANDDeInit
+                0x080093a0                FMC_NANDInit
+                0x08009410                FMC_NANDStructInit
+                0x0800943c                FMC_NANDCmd
+                0x08009480                FMC_NANDECCCmd
+                0x080094c4                FMC_GetECC
+                0x080094d4                FMC_PCCARDDeInit
+                0x080094f8                FMC_PCCARDInit
+                0x08009568                FMC_PCCARDStructInit
+                0x08009594                FMC_PCCARDCmd
+                0x080095bc                FMC_SDRAMDeInit
+                0x080095e4                FMC_SDRAMInit
+                0x08009698                FMC_SDRAMStructInit
+                0x080096cc                FMC_SDRAMCmdConfig
+                0x080096ec                FMC_GetModeStatus
+                0x08009708                FMC_SetRefreshCount
+                0x08009718                FMC_SetAutoRefresh_Number
+                0x08009728                FMC_SDRAMWriteProtectionConfig
+                0x0800974c                FMC_ITConfig
+                0x080097e8                FMC_GetFlagStatus
+                0x08009824                FMC_ClearFlag
+                0x08009878                FMC_GetITStatus
+                0x080098e8                FMC_ClearITPendingBit
+ .text          0x0800993c      0x288 build/stm32/periph/src/stm32f4xx_gpio.o
+                0x0800993c                GPIO_DeInit
+                0x08009a98                GPIO_Init
+                0x08009b24                GPIO_StructInit
+                0x08009b30                GPIO_PinLockConfig
+                0x08009b54                GPIO_ReadInputDataBit
+                0x08009b60                GPIO_ReadInputData
+                0x08009b68                GPIO_ReadOutputDataBit
+                0x08009b74                GPIO_ReadOutputData
+                0x08009b7c                GPIO_SetBits
+                0x08009b80                GPIO_ResetBits
+                0x08009b84                GPIO_WriteBit
+                0x08009b90                GPIO_Write
+                0x08009b94                GPIO_ToggleBits
+                0x08009b9c                GPIO_PinAFConfig
+ .text          0x08009bc4      0x47c build/stm32/periph/src/stm32f4xx_i2c.o
+                0x08009bc4                I2C_DeInit
+                0x08009c30                I2C_Init
+                0x08009d14                I2C_StructInit
+                0x08009d30                I2C_Cmd
+                0x08009d4c                I2C_AnalogFilterCmd
+                0x08009d68                I2C_DigitalFilterConfig
+                0x08009d7c                I2C_GenerateSTART
+                0x08009d98                I2C_GenerateSTOP
+                0x08009db4                I2C_Send7bitAddress
+                0x08009dc4                I2C_AcknowledgeConfig
+                0x08009de0                I2C_OwnAddress2Config
+                0x08009df4                I2C_DualAddressCmd
+                0x08009e10                I2C_GeneralCallCmd
+                0x08009e2c                I2C_SoftwareResetCmd
+                0x08009e48                I2C_StretchClockCmd
+                0x08009e64                I2C_FastModeDutyCycleConfig
+                0x08009e84                I2C_NACKPositionConfig
+                0x08009ea4                I2C_SMBusAlertConfig
+                0x08009ec4                I2C_ARPCmd
+                0x08009ee0                I2C_SendData
+                0x08009ee4                I2C_ReceiveData
+                0x08009eec                I2C_TransmitPEC
+                0x08009f08                I2C_PECPositionConfig
+                0x08009f28                I2C_CalculatePEC
+                0x08009f44                I2C_GetPEC
+                0x08009f4c                I2C_DMACmd
+                0x08009f68                I2C_DMALastTransferCmd
+                0x08009f84                I2C_ReadRegister
+                0x08009f9c                I2C_ITConfig
+                0x08009fb0                I2C_CheckEvent
+                0x08009fcc                I2C_GetLastEvent
+                0x08009fdc                I2C_GetFlagStatus
+                0x0800a014                I2C_ClearFlag
+                0x0800a01c                I2C_GetITStatus
+                0x0800a038                I2C_ClearITPendingBit
+ .text          0x0800a040      0x530 build/stm32/periph/src/stm32f4xx_rcc.o
+                0x0800a040                RCC_DeInit
+                0x0800a088                RCC_HSEConfig
+                0x0800a098                RCC_AdjustHSICalibrationValue
+                0x0800a0ac                RCC_HSICmd
+                0x0800a0b8                RCC_LSEConfig
+                0x0800a0e0                RCC_LSICmd
+                0x0800a0ec                RCC_PLLConfig
+                0x0800a110                RCC_PLLCmd
+                0x0800a11c                RCC_PLLI2SConfig
+                0x0800a134                RCC_PLLI2SCmd
+                0x0800a140                RCC_PLLSAIConfig
+                0x0800a158                RCC_PLLSAICmd
+                0x0800a164                RCC_ClockSecuritySystemCmd
+                0x0800a170                RCC_MCO1Config
+                0x0800a184                RCC_MCO2Config
+                0x0800a198                RCC_SYSCLKConfig
+                0x0800a1ac                RCC_GetSYSCLKSource
+                0x0800a1bc                RCC_HCLKConfig
+                0x0800a1d0                RCC_PCLK1Config
+                0x0800a1e4                RCC_PCLK2Config
+                0x0800a1f8                RCC_GetClocksFreq
+                0x0800a284                RCC_RTCCLKConfig
+                0x0800a2b8                RCC_RTCCLKCmd
+                0x0800a2c4                RCC_BackupResetCmd
+                0x0800a2d0                RCC_I2SCLKConfig
+                0x0800a2dc                RCC_SAIPLLI2SClkDivConfig
+                0x0800a2f4                RCC_SAIPLLSAIClkDivConfig
+                0x0800a310                RCC_SAIBlockACLKConfig
+                0x0800a328                RCC_SAIBlockBCLKConfig
+                0x0800a340                RCC_LTDCCLKDivConfig
+                0x0800a358                RCC_TIMCLKPresConfig
+                0x0800a364                RCC_AHB1PeriphClockCmd
+                0x0800a37c                RCC_AHB2PeriphClockCmd
+                0x0800a394                RCC_AHB3PeriphClockCmd
+                0x0800a3ac                RCC_APB1PeriphClockCmd
+                0x0800a3c4                RCC_APB2PeriphClockCmd
+                0x0800a3dc                RCC_AHB1PeriphResetCmd
+                0x0800a3f4                RCC_AHB2PeriphResetCmd
+                0x0800a40c                RCC_AHB3PeriphResetCmd
+                0x0800a424                RCC_APB1PeriphResetCmd
+                0x0800a43c                RCC_APB2PeriphResetCmd
+                0x0800a454                RCC_AHB1PeriphClockLPModeCmd
+                0x0800a46c                RCC_AHB2PeriphClockLPModeCmd
+                0x0800a484                RCC_AHB3PeriphClockLPModeCmd
+                0x0800a49c                RCC_APB1PeriphClockLPModeCmd
+                0x0800a4b4                RCC_APB2PeriphClockLPModeCmd
+                0x0800a4cc                RCC_ITConfig
+                0x0800a4e4                RCC_GetFlagStatus
+                0x0800a50c                RCC_WaitForHSEStartUp
+                0x0800a540                RCC_ClearFlag
+                0x0800a550                RCC_GetITStatus
+                0x0800a564                RCC_ClearITPendingBit
+ .text          0x0800a570      0x404 build/stm32/periph/src/stm32f4xx_spi.o
+                0x0800a570                SPI_I2S_DeInit
+                0x0800a640                SPI_Init
+                0x0800a698                I2S_Init
+                0x0800a76c                SPI_StructInit
+                0x0800a77c                I2S_StructInit
+                0x0800a78c                SPI_Cmd
+                0x0800a7a8                I2S_Cmd
+                0x0800a7c4                SPI_DataSizeConfig
+                0x0800a7dc                SPI_BiDirectionalLineConfig
+                0x0800a7fc                SPI_NSSInternalSoftwareConfig
+                0x0800a81c                SPI_SSOutputCmd
+                0x0800a838                SPI_TIModeCmd
+                0x0800a854                I2S_FullDuplexConfig
+                0x0800a8a4                SPI_I2S_ReceiveData
+                0x0800a8ac                SPI_I2S_SendData
+                0x0800a8b0                SPI_CalculateCRC
+                0x0800a8cc                SPI_TransmitCRC
+                0x0800a8d8                SPI_GetCRC
+                0x0800a8e4                SPI_GetCRCPolynomial
+                0x0800a8ec                SPI_I2S_DMACmd
+                0x0800a900                SPI_I2S_ITConfig
+                0x0800a920                SPI_I2S_GetFlagStatus
+                0x0800a930                SPI_I2S_ClearFlag
+                0x0800a938                SPI_I2S_GetITStatus
+                0x0800a964                SPI_I2S_ClearITPendingBit
+ .text          0x0800a974       0x88 build/stm32/periph/src/stm32f4xx_syscfg.o
+                0x0800a974                SYSCFG_DeInit
+                0x0800a990                SYSCFG_MemoryRemapConfig
+                0x0800a99c                SYSCFG_MemorySwappingBank
+                0x0800a9a8                SYSCFG_EXTILineConfig
+                0x0800a9d4                SYSCFG_ETH_MediaInterfaceConfig
+                0x0800a9e0                SYSCFG_CompensationCellCmd
+                0x0800a9ec                SYSCFG_GetCompensationCellStatus
+ .text          0x0800a9fc      0xca8 build/stm32/periph/src/stm32f4xx_tim.o
+                0x0800aaa4                TIM_DeInit
+                0x0800ac5c                TIM_TimeBaseInit
+                0x0800ad00                TIM_TimeBaseStructInit
+                0x0800ad10                TIM_PrescalerConfig
+                0x0800ad18                TIM_CounterModeConfig
+                0x0800ad28                TIM_SetCounter
+                0x0800ad2c                TIM_SetAutoreload
+                0x0800ad30                TIM_GetCounter
+                0x0800ad34                TIM_GetPrescaler
+                0x0800ad3c                TIM_UpdateDisableConfig
+                0x0800ad58                TIM_UpdateRequestConfig
+                0x0800ad74                TIM_ARRPreloadConfig
+                0x0800ad90                TIM_SelectOnePulseMode
+                0x0800ada8                TIM_SetClockDivision
+                0x0800adc0                TIM_Cmd
+                0x0800addc                TIM_OC1Init
+                0x0800ae60                TIM_OC2Init
+                0x0800aef4                TIM_OC3Init
+                0x0800af84                TIM_OC4Init
+                0x0800aff4                TIM_OCStructInit
+                0x0800b004                TIM_SelectOCxM
+                0x0800b068                TIM_SetCompare1
+                0x0800b06c                TIM_SetCompare2
+                0x0800b070                TIM_SetCompare3
+                0x0800b074                TIM_SetCompare4
+                0x0800b078                TIM_ForcedOC1Config
+                0x0800b088                TIM_ForcedOC2Config
+                0x0800b09c                TIM_ForcedOC3Config
+                0x0800b0ac                TIM_ForcedOC4Config
+                0x0800b0c0                TIM_OC1PreloadConfig
+                0x0800b0d0                TIM_OC2PreloadConfig
+                0x0800b0e4                TIM_OC3PreloadConfig
+                0x0800b0f4                TIM_OC4PreloadConfig
+                0x0800b108                TIM_OC1FastConfig
+                0x0800b118                TIM_OC2FastConfig
+                0x0800b12c                TIM_OC3FastConfig
+                0x0800b13c                TIM_OC4FastConfig
+                0x0800b150                TIM_ClearOC1Ref
+                0x0800b160                TIM_ClearOC2Ref
+                0x0800b170                TIM_ClearOC3Ref
+                0x0800b180                TIM_ClearOC4Ref
+                0x0800b190                TIM_OC1PolarityConfig
+                0x0800b1a0                TIM_OC1NPolarityConfig
+                0x0800b1b0                TIM_OC2PolarityConfig
+                0x0800b1c4                TIM_OC2NPolarityConfig
+                0x0800b1d8                TIM_OC3PolarityConfig
+                0x0800b1ec                TIM_OC3NPolarityConfig
+                0x0800b200                TIM_OC4PolarityConfig
+                0x0800b214                TIM_CCxCmd
+                0x0800b234                TIM_CCxNCmd
+                0x0800b254                TIM_ICStructInit
+                0x0800b260                TIM_GetCapture1
+                0x0800b264                TIM_GetCapture2
+                0x0800b268                TIM_GetCapture3
+                0x0800b26c                TIM_GetCapture4
+                0x0800b270                TIM_SetIC1Prescaler
+                0x0800b288                TIM_SetIC2Prescaler
+                0x0800b2a4                TIM_PWMIConfig
+                0x0800b318                TIM_SetIC3Prescaler
+                0x0800b330                TIM_SetIC4Prescaler
+                0x0800b34c                TIM_ICInit
+                0x0800b418                TIM_BDTRConfig
+                0x0800b43c                TIM_BDTRStructInit
+                0x0800b448                TIM_CtrlPWMOutputs
+                0x0800b468                TIM_SelectCOM
+                0x0800b484                TIM_CCPreloadControl
+                0x0800b4a0                TIM_ITConfig
+                0x0800b4b4                TIM_GenerateEvent
+                0x0800b4b8                TIM_GetFlagStatus
+                0x0800b4c8                TIM_ClearFlag
+                0x0800b4d0                TIM_GetITStatus
+                0x0800b4e8                TIM_ClearITPendingBit
+                0x0800b4f0                TIM_DMAConfig
+                0x0800b4f8                TIM_DMACmd
+                0x0800b50c                TIM_SelectCCDMA
+                0x0800b528                TIM_InternalClockConfig
+                0x0800b538                TIM_ITRxExternalClockConfig
+                0x0800b554                TIM_TIxExternalClockConfig
+                0x0800b588                TIM_SelectInputTrigger
+                0x0800b598                TIM_SelectOutputTrigger
+                0x0800b5b0                TIM_SelectSlaveMode
+                0x0800b5c8                TIM_SelectMasterSlaveMode
+                0x0800b5e0                TIM_ETRConfig
+                0x0800b5fc                TIM_ETRClockMode1Config
+                0x0800b618                TIM_ETRClockMode2Config
+                0x0800b62c                TIM_EncoderInterfaceConfig
+                0x0800b680                TIM_SelectHallSensor
+                0x0800b69c                TIM_RemapConfig
+ .text          0x0800b6a4       0x14 build/stm32/device/src/startup_stm32f427_437xx.o
+ .text          0x0800b6b8      0x188 build/stm32/device/src/system_stm32f4xx.o
+                0x0800b6b8                SystemInit
+                0x0800b7d0                SystemCoreClockUpdate
+ .text          0x0800b840      0x150 build/RAM_test.o
+                0x0800b840                RAM_test
+                0x0800b8c0                RAM_startup_test
+ .text          0x0800b990      0x32c build/adc.o
+                0x0800b990                Deinit_Pot_ADC
+                0x0800b9d4                Deinit_CV_ADC
+                0x0800ba18                Init_Pot_ADC
+                0x0800bb7c                Init_CV_ADC
+ .text          0x0800bcbc      0x1fc build/audio_memory.o
+                0x0800bcbc                memory_clear
+                0x0800bcec                memory_read
+                0x0800bd78                memory_write
+                0x0800bdf4                memory_fade_write
+ .text          0x0800beb8      0x968 build/buttons_jacks.o
+                0x0800beb8                init_inputread_timer
+                0x0800bf50                TIM1_UP_TIM10_IRQHandler
+                0x0800c1e4                TIM4_IRQHandler
+ .text          0x0800c820      0x320 build/calibration.o
+                0x0800c820                set_default_calibration_values
+                0x0800c840                auto_calibrate
+                0x0800c8c8                update_calibration
+                0x0800cab0                update_calibrate_leds
+                0x0800cae8                update_calibration_button_leds
+ .text          0x0800cb40      0x4a4 build/codec_CS4271.o
+                0x0800cb40                Codec_TIMEOUT_UserCallback
+                0x0800cb44                Codecs_Deinit
+                0x0800cb8c                Codec_WriteRegister
+                0x0800cc68                Codec_Reset
+                0x0800ccec                Codec_CtrlInterface_Init
+                0x0800cd64                Codec_Register_Setup
+                0x0800cdb4                Codec_AudioInterface_Init
+                0x0800ce50                Codec_GPIO_Init
+                0x0800cfb0                init_i2s_clkin
+ .text          0x0800cfe4       0x84 build/compressor.o
+                0x0800cfe4                init_compressor
+                0x0800d01c                compress
+ .text          0x0800d068      0x250 build/dig_pins.o
+                0x0800d068                init_dig_inouts
+ .text          0x0800d2b8       0xe4 build/flash.o
+                0x0800d2b8                flash_erase_sector
+                0x0800d2f8                flash_open_erase_sector
+                0x0800d328                flash_begin_open_program
+                0x0800d338                flash_open_program_byte
+                0x0800d344                flash_open_program_word
+                0x0800d350                flash_end_open_program
+                0x0800d354                flash_open_program_array
+                0x0800d37c                flash_read_array
+                0x0800d390                flash_read_word
+                0x0800d394                flash_read_byte
+ .text          0x0800d39c      0x800 build/flash_user.o
+                0x0800d39c                set_firmware_version
+                0x0800d3a8                store_params_into_sram
+                0x0800d4b8                write_all_params_to_FLASH
+                0x0800d648                factory_reset
+                0x0800d728                save_flash_params
+                0x0800d7c0                read_all_params_from_FLASH
+                0x0800da40                load_flash_params
+ .text          0x0800db9c       0x84 build/gpiof4.o
+                0x0800db9c                gpio_conf
+ .text          0x0800dc20      0x514 build/i2s.o
+                0x0800dc20                Start_I2SDMA_Channel1
+                0x0800dc30                Start_I2SDMA_Channel2
+                0x0800dc40                DeInit_I2S_Clock
+                0x0800dc54                DeInit_I2SDMA_Channel1
+                0x0800dc88                DeInit_I2SDMA_Channel2
+                0x0800dcbc                Init_I2SDMA_Channel1
+                0x0800de08                Init_I2SDMA_Channel2
+                0x0800df60                init_audio_dma
+                0x0800df7c                DMA1_Stream3_IRQHandler
+                0x0800dff8                DMA1_Stream4_IRQHandler
+                0x0800e054                DMA1_Stream2_IRQHandler
+                0x0800e0d8                DMA1_Stream5_IRQHandler
+ .text          0x0800e134      0x570 build/leds.o
+                0x0800e134                update_ping_ledbut
+                0x0800e1c4                chase_all_lights
+                0x0800e300                blink_all_lights
+                0x0800e3a4                update_channel_leds
+                0x0800e448                update_INF_REV_ledbut
+                0x0800e5b0                init_LED_PWM_IRQ
+                0x0800e604                TIM2_IRQHandler
+ .text          0x0800e6a4      0xec4 build/looping_delay.o
+                0x0800e6a4                offset_samples
+                0x0800e6fc                calculate_read_addr
+                0x0800e724                swap_read_write
+                0x0800e75c                reverse_loop
+                0x0800e7cc                inc_addr
+                0x0800e81c                dec_addr
+                0x0800e86c                in_between
+                0x0800e8ac                set_divmult_time
+                0x0800ea08                audio_buffer_init
+                0x0800eac4                scroll_loop
+                0x0800eb54                increment_read_fade
+                0x0800ebcc                increment_write_fade
+                0x0800ec68                change_inf_mode
+                0x0800ed18                abs_diff
+                0x0800ed24                process_audio_block_codec
+ .text          0x0800f568       0xb0 build/main.o
+                0x0800f568                check_errors
+                0x0800f56c                check_bootloader_keys
+                0x0800f5d4                JumpTo
+                0x0800f5e8                NMI_Handler
+                0x0800f5ec                HardFault_Handler
+                0x0800f600                MemManage_Handler
+                0x0800f604                BusFault_Handler
+                0x0800f608                UsageFault_Handler
+                0x0800f60c                SVC_Handler
+                0x0800f610                DebugMon_Handler
+                0x0800f614                PendSV_Handler
+ .text          0x0800f618      0xcf8 build/params.o
+                0x0800f618                set_fade_increment
+                0x0800f630                init_params
+                0x0800f668                init_modes
+                0x0800f68c                LowPassSmoothingFilter
+                0x0800f6a4                init_LowPassCoefs
+                0x0800f784                process_adc
+                0x0800fb74                process_mode_flags
+                0x0800fc0c                process_ping_changed
+                0x0800fc30                get_switch_val
+                0x0800fc6c                adjust_time_by_switch
+                0x0800fca0                get_clk_div_nominal
+                0x0800fcdc                get_clk_div_exact
+                0x0800ff58                update_params
+ .text          0x08010310       0xe8 build/sdram.o
+                0x08010310                SDRAM_Init
+ .text          0x080103f8      0x988 build/system_settings.o
+                0x080103f8                set_default_system_settings
+                0x08010474                check_entering_system_mode
+                0x080105a0                update_system_settings
+                0x0801094c                update_system_settings_button_leds
+                0x08010b68                update_system_settings_leds
+ .text          0x08010d80      0x22c build/timekeeper.o
+                0x08010d80                reset_ping_ledbut_tmr
+                0x08010d8c                reset_ping_tmr
+                0x08010d98                reset_clkout_trigger_tmr
+                0x08010dc0                inc_tmrs
+                0x08010e28                reset_loopled_tmr
+                0x08010e64                init_timekeeper
+                0x08010ec4                EXTI15_10_IRQHandler
+                0x08010ef8                init_adc_param_update_timer
+                0x08010f50                TIM1_BRK_TIM9_IRQHandler
+ *(.text.*)
+ .text.Reset_Handler
+                0x08010fac       0x44 build/stm32/device/src/startup_stm32f427_437xx.o
+                0x08010fac                Reset_Handler
+ .text.Default_Handler
+                0x08010ff0        0x2 build/stm32/device/src/startup_stm32f427_437xx.o
+                0x08010ff0                SAI1_IRQHandler
+                0x08010ff0                HASH_RNG_IRQHandler
+                0x08010ff0                EXTI2_IRQHandler
+                0x08010ff0                TIM8_CC_IRQHandler
+                0x08010ff0                UART8_IRQHandler
+                0x08010ff0                SPI4_IRQHandler
+                0x08010ff0                TIM1_CC_IRQHandler
+                0x08010ff0                DMA2_Stream5_IRQHandler
+                0x08010ff0                SysTick_Handler
+                0x08010ff0                PVD_IRQHandler
+                0x08010ff0                SDIO_IRQHandler
+                0x08010ff0                TAMP_STAMP_IRQHandler
+                0x08010ff0                CAN2_RX1_IRQHandler
+                0x08010ff0                EXTI3_IRQHandler
+                0x08010ff0                TIM8_TRG_COM_TIM14_IRQHandler
+                0x08010ff0                TIM8_UP_TIM13_IRQHandler
+                0x08010ff0                I2C3_ER_IRQHandler
+                0x08010ff0                EXTI0_IRQHandler
+                0x08010ff0                I2C2_EV_IRQHandler
+                0x08010ff0                CAN1_RX0_IRQHandler
+                0x08010ff0                FPU_IRQHandler
+                0x08010ff0                OTG_HS_WKUP_IRQHandler
+                0x08010ff0                LTDC_ER_IRQHandler
+                0x08010ff0                CAN2_SCE_IRQHandler
+                0x08010ff0                DMA2_Stream2_IRQHandler
+                0x08010ff0                SPI1_IRQHandler
+                0x08010ff0                TIM6_DAC_IRQHandler
+                0x08010ff0                DCMI_IRQHandler
+                0x08010ff0                CAN2_RX0_IRQHandler
+                0x08010ff0                DMA2_Stream3_IRQHandler
+                0x08010ff0                USART6_IRQHandler
+                0x08010ff0                USART3_IRQHandler
+                0x08010ff0                CRYP_IRQHandler
+                0x08010ff0                CAN1_RX1_IRQHandler
+                0x08010ff0                UART5_IRQHandler
+                0x08010ff0                DMA2_Stream0_IRQHandler
+                0x08010ff0                I2C1_EV_IRQHandler
+                0x08010ff0                DMA1_Stream6_IRQHandler
+                0x08010ff0                DMA1_Stream1_IRQHandler
+                0x08010ff0                UART4_IRQHandler
+                0x08010ff0                TIM3_IRQHandler
+                0x08010ff0                RCC_IRQHandler
+                0x08010ff0                TIM8_BRK_TIM12_IRQHandler
+                0x08010ff0                Default_Handler
+                0x08010ff0                ADC_IRQHandler
+                0x08010ff0                DMA1_Stream7_IRQHandler
+                0x08010ff0                SPI5_IRQHandler
+                0x08010ff0                TIM7_IRQHandler
+                0x08010ff0                CAN2_TX_IRQHandler
+                0x08010ff0                TIM5_IRQHandler
+                0x08010ff0                DMA2_Stream7_IRQHandler
+                0x08010ff0                I2C3_EV_IRQHandler
+                0x08010ff0                EXTI9_5_IRQHandler
+                0x08010ff0                RTC_WKUP_IRQHandler
+                0x08010ff0                LTDC_IRQHandler
+                0x08010ff0                ETH_WKUP_IRQHandler
+                0x08010ff0                SPI2_IRQHandler
+                0x08010ff0                OTG_HS_EP1_IN_IRQHandler
+                0x08010ff0                DMA1_Stream0_IRQHandler
+                0x08010ff0                CAN1_TX_IRQHandler
+                0x08010ff0                EXTI4_IRQHandler
+                0x08010ff0                FSMC_IRQHandler
+                0x08010ff0                ETH_IRQHandler
+                0x08010ff0                OTG_HS_EP1_OUT_IRQHandler
+                0x08010ff0                WWDG_IRQHandler
+                0x08010ff0                SPI6_IRQHandler
+                0x08010ff0                OTG_FS_WKUP_IRQHandler
+                0x08010ff0                TIM1_TRG_COM_TIM11_IRQHandler
+                0x08010ff0                OTG_HS_IRQHandler
+                0x08010ff0                DMA2D_IRQHandler
+                0x08010ff0                EXTI1_IRQHandler
+                0x08010ff0                UART7_IRQHandler
+                0x08010ff0                USART2_IRQHandler
+                0x08010ff0                I2C2_ER_IRQHandler
+                0x08010ff0                DMA2_Stream1_IRQHandler
+                0x08010ff0                CAN1_SCE_IRQHandler
+                0x08010ff0                FLASH_IRQHandler
+                0x08010ff0                DMA2_Stream4_IRQHandler
+                0x08010ff0                USART1_IRQHandler
+                0x08010ff0                OTG_FS_IRQHandler
+                0x08010ff0                SPI3_IRQHandler
+                0x08010ff0                I2C1_ER_IRQHandler
+                0x08010ff0                DMA2_Stream6_IRQHandler
+                0x08010ff0                RTC_Alarm_IRQHandler
+ *fill*         0x08010ff2        0x2 
+ .text.startup  0x08010ff4      0x228 build/main.o
+                0x08010ff4                main
+ *(.rodata)
+ .rodata        0x0801121c       0x10 build/stm32/periph/src/stm32f4xx_rcc.o
+ .rodata        0x0801122c       0x10 build/stm32/device/src/system_stm32f4xx.o
+                0x0801122c                AHBPrescTable
+ .rodata        0x0801123c       0x16 build/codec_CS4271.o
+                0x0801123c                codec_init_data_master
+                0x08011244                codec_init_data_slave_DCinput
+                0x0801124c                codec_init_data_slave
+ *fill*         0x08011252        0x2 
+ .rodata        0x08011254       0x30 build/flash.o
+ .rodata        0x08011284        0x8 build/looping_delay.o
+                0x08011284                LOOP_RAM_BASE
+ .rodata        0x0801128c     0xc000 build/params.o
+                0x0801128c                log_taper
+                0x0801528c                exp_1voct
+                0x0801928c                epp_lut
+ .rodata        0x0801d28c       0xc8 build/sdram.o
+ *(.rodata*)
+ *(.glue_7)
+ .glue_7        0x0801d354        0x0 linker stubs
+ *(.glue_7t)
+ .glue_7t       0x0801d354        0x0 linker stubs
+ *(.init)
+ *(.fini)
+                0x0801d360                        . = ALIGN (0x10)
+ *fill*         0x0801d354        0xc 
+                0x0801d360                        _etext = .
+                0x0801d360                        _sidata = _etext
+
+.vfp11_veneer   0x0801d360        0x0
+ .vfp11_veneer  0x0801d360        0x0 linker stubs
+
+.v4_bx          0x0801d360        0x0
+ .v4_bx         0x0801d360        0x0 linker stubs
+
+.iplt           0x0801d360        0x0
+ .iplt          0x0801d360        0x0 build/stm32/periph/src/stm32f4xx_adc.o
+
+.rel.dyn        0x0801d360        0x0
+ .rel.iplt      0x0801d360        0x0 build/stm32/periph/src/stm32f4xx_adc.o
+
+.data           0x20000000       0x30 load address 0x0801d360
+                0x20000000                        . = ALIGN (0x10)
+                0x20000000                        _sdata = .
+ *(.ramtext*)
+                0x20000000                        . = ALIGN (0x10)
+ *(.data*)
+ .data          0x20000000        0x0 build/stm32/periph/src/misc.o
+ .data          0x20000000        0x0 build/stm32/periph/src/stm32f4xx_adc.o
+ .data          0x20000000        0x0 build/stm32/periph/src/stm32f4xx_dac.o
+ .data          0x20000000        0x0 build/stm32/periph/src/stm32f4xx_dma.o
+ .data          0x20000000        0x0 build/stm32/periph/src/stm32f4xx_exti.o
+ .data          0x20000000        0x0 build/stm32/periph/src/stm32f4xx_flash.o
+ .data          0x20000000        0x0 build/stm32/periph/src/stm32f4xx_fmc.o
+ .data          0x20000000        0x0 build/stm32/periph/src/stm32f4xx_gpio.o
+ .data          0x20000000        0x0 build/stm32/periph/src/stm32f4xx_i2c.o
+ .data          0x20000000        0x0 build/stm32/periph/src/stm32f4xx_rcc.o
+ .data          0x20000000        0x0 build/stm32/periph/src/stm32f4xx_spi.o
+ .data          0x20000000        0x0 build/stm32/periph/src/stm32f4xx_syscfg.o
+ .data          0x20000000        0x0 build/stm32/periph/src/stm32f4xx_tim.o
+ .data          0x20000000        0x0 build/stm32/device/src/startup_stm32f427_437xx.o
+ .data          0x20000000        0x4 build/stm32/device/src/system_stm32f4xx.o
+                0x20000000                SystemCoreClock
+ .data          0x20000004        0x0 build/RAM_test.o
+ .data          0x20000004        0x0 build/adc.o
+ .data          0x20000004        0x0 build/audio_memory.o
+ .data          0x20000004       0x18 build/buttons_jacks.o
+                0x20000018                ram_clear_interval
+ .data          0x2000001c        0x0 build/calibration.o
+ .data          0x2000001c        0x4 build/codec_CS4271.o
+                0x2000001c                CODECTimeout
+ .data          0x20000020        0x0 build/compressor.o
+ .data          0x20000020        0x0 build/dig_pins.o
+ .data          0x20000020        0x0 build/flash.o
+ .data          0x20000020        0x0 build/flash_user.o
+ .data          0x20000020        0x0 build/gpiof4.o
+ .data          0x20000020        0x0 build/i2s.o
+ .data          0x20000020        0x0 build/leds.o
+ .data          0x20000020        0x8 build/looping_delay.o
+                0x20000020                SAMPLESIZE
+ .data          0x20000028        0x0 build/main.o
+ .data          0x20000028        0x0 build/params.o
+ .data          0x20000028        0x0 build/sdram.o
+ .data          0x20000028        0x8 build/system_settings.o
+ .data          0x20000030        0x0 build/timekeeper.o
+ *(.data.*)
+                0x20000030                        . = ALIGN (0x10)
+                0x20000030                        _edata = .
+
+.igot.plt       0x20000030        0x0 load address 0x0801d390
+ .igot.plt      0x20000030        0x0 build/stm32/periph/src/stm32f4xx_adc.o
+
+.bss            0x20000030      0x5e0 load address 0x0801d390
+                0x20000030                        . = ALIGN (0x10)
+                0x20000030                        _sbss = .
+ *(.bss)
+ .bss           0x20000030        0x0 build/stm32/periph/src/misc.o
+ .bss           0x20000030        0x0 build/stm32/periph/src/stm32f4xx_adc.o
+ .bss           0x20000030        0x0 build/stm32/periph/src/stm32f4xx_dac.o
+ .bss           0x20000030        0x0 build/stm32/periph/src/stm32f4xx_dma.o
+ .bss           0x20000030        0x0 build/stm32/periph/src/stm32f4xx_exti.o
+ .bss           0x20000030        0x0 build/stm32/periph/src/stm32f4xx_flash.o
+ .bss           0x20000030        0x0 build/stm32/periph/src/stm32f4xx_fmc.o
+ .bss           0x20000030        0x0 build/stm32/periph/src/stm32f4xx_gpio.o
+ .bss           0x20000030        0x0 build/stm32/periph/src/stm32f4xx_i2c.o
+ .bss           0x20000030        0x0 build/stm32/periph/src/stm32f4xx_rcc.o
+ .bss           0x20000030        0x0 build/stm32/periph/src/stm32f4xx_spi.o
+ .bss           0x20000030        0x0 build/stm32/periph/src/stm32f4xx_syscfg.o
+ .bss           0x20000030        0x0 build/stm32/periph/src/stm32f4xx_tim.o
+ .bss           0x20000030        0x0 build/stm32/device/src/startup_stm32f427_437xx.o
+ .bss           0x20000030        0x0 build/stm32/device/src/system_stm32f4xx.o
+ .bss           0x20000030        0x0 build/RAM_test.o
+ .bss           0x20000030        0x0 build/adc.o
+ .bss           0x20000030        0x0 build/audio_memory.o
+ .bss           0x20000030       0x50 build/buttons_jacks.o
+                0x20000032                ping_button_state
+                0x20000033                ping_jack_state
+                0x2000003c                flag_ping_was_changed
+                0x20000054                flag_acknowlegde_qcm
+                0x20000058                flag_ignore_revdown
+                0x2000005c                flag_ignore_infdown
+                0x20000060                flag_pot_changed_infdown
+                0x20000068                flag_inf_change
+                0x2000006c                flag_pot_changed_revdown
+                0x20000074                flag_rev_change
+ .bss           0x20000080       0x2c build/calibration.o
+                0x20000080                CODEC_DAC_CALIBRATION_DCOFFSET
+                0x20000088                CODEC_ADC_CALIBRATION_DCOFFSET
+                0x20000090                CV_CALIBRATION_OFFSET
+ .bss           0x200000ac        0x0 build/codec_CS4271.o
+ .bss           0x200000ac        0xc build/compressor.o
+                0x200000ac                MAX_SAMPLEVAL
+                0x200000b0                THRESHOLD_COMPILED
+                0x200000b4                THRESHOLD_VALUE
+ .bss           0x200000b8        0x0 build/dig_pins.o
+ .bss           0x200000b8        0x0 build/flash.o
+ .bss           0x200000b8       0x60 build/flash_user.o
+                0x200000b8                flash_firmware_version
+                0x200000c0                flash_CV_CALIBRATION_OFFSET
+                0x200000d8                flash_CODEC_DAC_CALIBRATION_DCOFFSET
+                0x200000e8                flash_CODEC_ADC_CALIBRATION_DCOFFSET
+                0x200000f8                flash_param_TRACKING_COMP_0
+                0x200000fc                flash_param_TRACKING_COMP_1
+                0x20000100                flash_global_param_FAST_FADE_SAMPLES
+                0x20000104                flash_global_param_SLOW_FADE_SAMPLES
+                0x20000108                flash_loop_led_brightness
+                0x20000109                flash_mode_LOOP_CLOCK_GATETRIG_0
+                0x2000010a                flash_mode_LOOP_CLOCK_GATETRIG_1
+                0x2000010b                flash_mode_MAIN_CLOCK_GATETRIG
+                0x2000010c                flash_global_mode_AUTO_MUTE
+                0x2000010d                flash_global_mode_SOFTCLIP
+                0x2000010e                flash_global_mode_REV_GATETRIG
+                0x2000010f                flash_global_mode_INF_GATETRIG
+                0x20000110                flash_global_mode_PING_METHOD
+                0x20000111                flash_global_mode_LOG_DELAY_FEED
+                0x20000112                flash_global_mode_RUNAWAYDC_BLOCK
+                0x20000113                flash_global_mode_QUANTIZE_MODE_CHANGES
+                0x20000114                flash_mode_LEVELCV_IS_MIX_0
+                0x20000115                flash_mode_LEVELCV_IS_MIX_1
+                0x20000116                flash_mode_SEND_RETURN_BEFORE_LOOP_0
+                0x20000117                flash_mode_SEND_RETURN_BEFORE_LOOP_1
+ .bss           0x20000118        0x0 build/gpiof4.o
+ .bss           0x20000118      0x20c build/i2s.o
+                0x20000118                dma_ch1tx
+                0x20000154                ch1tx_buffer
+                0x20000194                dma_ch1rx
+                0x200001d0                ch1rx_buffer
+                0x20000210                nvic_i2s3ext
+                0x20000214                ch1tx_buffer_start
+                0x20000218                ch1rx_buffer_start
+                0x2000021c                dma_ch2tx
+                0x20000258                ch2tx_buffer
+                0x20000298                dma_ch2rx
+                0x200002d4                ch2rx_buffer
+                0x20000314                nvic_i2s2ext
+                0x20000318                ch2tx_buffer_start
+                0x2000031c                ch2rx_buffer_start
+                0x20000320                NVIC_InitStructure
+ .bss           0x20000324        0xc build/leds.o
+                0x20000324                loop_led_state
+ .bss           0x20000330       0xb6 build/looping_delay.o
+                0x20000330                write_addr
+                0x20000338                fade_dest_read_addr
+                0x20000340                fade_dest_write_addr
+                0x20000348                read_addr
+                0x20000350                write_fade_pos
+                0x20000358                write_fade_state
+                0x2000035c                read_fade_pos
+                0x20000364                doing_reverse_fade
+                0x20000368                fade_queued_dest_divmult_time
+                0x20000370                loop_start
+                0x20000378                loop_end
+                0x20000380                locked_ping_time
+                0x20000388                ping_time
+                0x2000038c                old_divmult_time
+                0x20000394                divmult_time
+                0x2000039c                fade_queued_dest_read_addr
+                0x200003a4                lpf_coef
+                0x200003a8                min_vol
+                0x200003ac                mainin_lpf
+                0x200003c0                auxin_lpf
+                0x200003d4                dcblock_lpf
+                0x200003dc                fade_queued_dest_write_addr
+                0x200003e4                queued_write_fade_state
+ *fill*         0x200003e6        0x2 
+ .bss           0x200003e8       0x20 build/main.o
+                0x200003e8                potadc_buffer
+                0x200003f8                cvadc_buffer
+                0x20000404                g_error
+ .bss           0x20000408      0x1d4 build/params.o
+                0x20000408                param
+                0x20000438                mode
+                0x20000450                global_mode
+                0x20000460                CV_LPF_COEF
+                0x20000478                MIN_CV_ADC_CHANGE
+                0x20000490                POT_LPF_COEF
+                0x200004b0                MIN_POT_ADC_CHANGE
+                0x200004d0                smoothed_potadc
+                0x200004f0                old_i_smoothed_potadc
+                0x20000500                i_smoothed_potadc
+                0x20000510                pot_delta
+                0x20000530                smoothed_cvadc
+                0x20000548                smoothed_rawcvadc
+                0x20000560                old_i_smoothed_cvadc
+                0x2000056c                i_smoothed_cvadc
+                0x20000578                i_smoothed_rawcvadc
+                0x20000584                cv_delta
+                0x200005c4                flag_time_param_changed
+                0x200005c8                global_param
+ .bss           0x200005dc        0x0 build/sdram.o
+ .bss           0x200005dc       0x1d build/system_settings.o
+                0x200005e0                disable_mode_changes
+ *fill*         0x200005f9        0x3 
+ .bss           0x200005fc       0x14 build/timekeeper.o
+                0x200005fc                ping_ledbut_tmr
+                0x20000600                ping_tmr
+                0x20000604                clkout_trigger_tmr
+                0x20000608                loopled_tmr
+ *(.bss*)
+ *(COMMON)
+                0x20000610                        . = ALIGN (0x10)
+                0x20000610                        _ebss = .
+                [!provide]                        PROVIDE (end = _ebss)
+                [!provide]                        PROVIDE (_end = _ebss)
+
+._user_heap_stack
+                0x20000610      0x400 load address 0x0801d970
+                0x20000610                        . = ALIGN (0x10)
+                [!provide]                        PROVIDE (end = .)
+                [!provide]                        PROVIDE (_end = .)
+                0x20000610                        . = (. + _Min_Heap_Size)
+                0x20000a10                        . = (. + _Min_Stack_Size)
+ *fill*         0x20000610      0x400 
+                0x20000a10                        . = ALIGN (0x10)
+
+.ccmdata        0x10000000        0x0
+                0x10000000                        . = ALIGN (0x10)
+ *(.ccmdata)
+                0x10000000                        . = ALIGN (0x10)
+LOAD build/stm32/periph/src/misc.o
+LOAD build/stm32/periph/src/stm32f4xx_adc.o
+LOAD build/stm32/periph/src/stm32f4xx_dac.o
+LOAD build/stm32/periph/src/stm32f4xx_dma.o
+LOAD build/stm32/periph/src/stm32f4xx_exti.o
+LOAD build/stm32/periph/src/stm32f4xx_flash.o
+LOAD build/stm32/periph/src/stm32f4xx_fmc.o
+LOAD build/stm32/periph/src/stm32f4xx_gpio.o
+LOAD build/stm32/periph/src/stm32f4xx_i2c.o
+LOAD build/stm32/periph/src/stm32f4xx_rcc.o
+LOAD build/stm32/periph/src/stm32f4xx_spi.o
+LOAD build/stm32/periph/src/stm32f4xx_syscfg.o
+LOAD build/stm32/periph/src/stm32f4xx_tim.o
+LOAD build/stm32/device/src/startup_stm32f427_437xx.o
+LOAD build/stm32/device/src/system_stm32f4xx.o
+LOAD build/RAM_test.o
+LOAD build/adc.o
+LOAD build/audio_memory.o
+LOAD build/buttons_jacks.o
+LOAD build/calibration.o
+LOAD build/codec_CS4271.o
+LOAD build/compressor.o
+LOAD build/dig_pins.o
+LOAD build/flash.o
+LOAD build/flash_user.o
+LOAD build/gpiof4.o
+LOAD build/i2s.o
+LOAD build/leds.o
+LOAD build/looping_delay.o
+LOAD build/main.o
+LOAD build/params.o
+LOAD build/sdram.o
+LOAD build/system_settings.o
+LOAD build/timekeeper.o
+OUTPUT(build/main.elf elf32-littlearm)
+LOAD linker stubs
+
+.debug_info     0x00000000    0x14dfa
+ .debug_info    0x00000000      0x516 build/stm32/periph/src/misc.o
+ .debug_info    0x00000516      0xcde build/stm32/periph/src/stm32f4xx_adc.o
+ .debug_info    0x000011f4      0x6b4 build/stm32/periph/src/stm32f4xx_dac.o
+ .debug_info    0x000018a8      0x743 build/stm32/periph/src/stm32f4xx_dma.o
+ .debug_info    0x00001feb      0x332 build/stm32/periph/src/stm32f4xx_exti.o
+ .debug_info    0x0000231d      0xacb build/stm32/periph/src/stm32f4xx_flash.o
+ .debug_info    0x00002de8      0xd01 build/stm32/periph/src/stm32f4xx_fmc.o
+ .debug_info    0x00003ae9      0x86a build/stm32/periph/src/stm32f4xx_gpio.o
+ .debug_info    0x00004353      0xc8e build/stm32/periph/src/stm32f4xx_i2c.o
+ .debug_info    0x00004fe1      0xe51 build/stm32/periph/src/stm32f4xx_rcc.o
+ .debug_info    0x00005e32      0xc8a build/stm32/periph/src/stm32f4xx_spi.o
+ .debug_info    0x00006abc      0x2c5 build/stm32/periph/src/stm32f4xx_syscfg.o
+ .debug_info    0x00006d81     0x2335 build/stm32/periph/src/stm32f4xx_tim.o
+ .debug_info    0x000090b6      0x5fc build/stm32/device/src/system_stm32f4xx.o
+ .debug_info    0x000096b2      0x27a build/RAM_test.o
+ .debug_info    0x0000992c      0xe12 build/adc.o
+ .debug_info    0x0000a73e      0x44e build/audio_memory.o
+ .debug_info    0x0000ab8c      0xda9 build/buttons_jacks.o
+ .debug_info    0x0000b935      0x447 build/calibration.o
+ .debug_info    0x0000bd7c     0x1209 build/codec_CS4271.o
+ .debug_info    0x0000cf85      0x153 build/compressor.o
+ .debug_info    0x0000d0d8      0x79d build/dig_pins.o
+ .debug_info    0x0000d875      0x4aa build/flash.o
+ .debug_info    0x0000dd1f      0xcf6 build/flash_user.o
+ .debug_info    0x0000ea15      0x1fa build/gpiof4.o
+ .debug_info    0x0000ec0f     0x1557 build/i2s.o
+ .debug_info    0x00010166      0xd27 build/leds.o
+ .debug_info    0x00010e8d     0x114a build/looping_delay.o
+ .debug_info    0x00011fd7      0xa1a build/main.o
+ .debug_info    0x000129f1      0xc36 build/params.o
+ .debug_info    0x00013627      0x45d build/sdram.o
+ .debug_info    0x00013a84      0x662 build/system_settings.o
+ .debug_info    0x000140e6      0xd14 build/timekeeper.o
+
+.debug_abbrev   0x00000000     0x42b5
+ .debug_abbrev  0x00000000      0x195 build/stm32/periph/src/misc.o
+ .debug_abbrev  0x00000195      0x218 build/stm32/periph/src/stm32f4xx_adc.o
+ .debug_abbrev  0x000003ad      0x224 build/stm32/periph/src/stm32f4xx_dac.o
+ .debug_abbrev  0x000005d1      0x191 build/stm32/periph/src/stm32f4xx_dma.o
+ .debug_abbrev  0x00000762      0x201 build/stm32/periph/src/stm32f4xx_exti.o
+ .debug_abbrev  0x00000963      0x1d3 build/stm32/periph/src/stm32f4xx_flash.o
+ .debug_abbrev  0x00000b36      0x1e9 build/stm32/periph/src/stm32f4xx_fmc.o
+ .debug_abbrev  0x00000d1f      0x24a build/stm32/periph/src/stm32f4xx_gpio.o
+ .debug_abbrev  0x00000f69      0x23b build/stm32/periph/src/stm32f4xx_i2c.o
+ .debug_abbrev  0x000011a4      0x20b build/stm32/periph/src/stm32f4xx_rcc.o
+ .debug_abbrev  0x000013af      0x1f5 build/stm32/periph/src/stm32f4xx_spi.o
+ .debug_abbrev  0x000015a4      0x19c build/stm32/periph/src/stm32f4xx_syscfg.o
+ .debug_abbrev  0x00001740      0x2ca build/stm32/periph/src/stm32f4xx_tim.o
+ .debug_abbrev  0x00001a0a      0x19f build/stm32/device/src/system_stm32f4xx.o
+ .debug_abbrev  0x00001ba9      0x187 build/RAM_test.o
+ .debug_abbrev  0x00001d30      0x199 build/adc.o
+ .debug_abbrev  0x00001ec9      0x1b3 build/audio_memory.o
+ .debug_abbrev  0x0000207c      0x29e build/buttons_jacks.o
+ .debug_abbrev  0x0000231a      0x1c2 build/calibration.o
+ .debug_abbrev  0x000024dc      0x271 build/codec_CS4271.o
+ .debug_abbrev  0x0000274d       0xc0 build/compressor.o
+ .debug_abbrev  0x0000280d      0x158 build/dig_pins.o
+ .debug_abbrev  0x00002965      0x1b5 build/flash.o
+ .debug_abbrev  0x00002b1a      0x286 build/flash_user.o
+ .debug_abbrev  0x00002da0       0xf7 build/gpiof4.o
+ .debug_abbrev  0x00002e97      0x2c2 build/i2s.o
+ .debug_abbrev  0x00003159      0x2ae build/leds.o
+ .debug_abbrev  0x00003407      0x335 build/looping_delay.o
+ .debug_abbrev  0x0000373c      0x2ae build/main.o
+ .debug_abbrev  0x000039ea      0x31a build/params.o
+ .debug_abbrev  0x00003d04      0x14b build/sdram.o
+ .debug_abbrev  0x00003e4f      0x1d6 build/system_settings.o
+ .debug_abbrev  0x00004025      0x290 build/timekeeper.o
+
+.debug_loclists
+                0x00000000     0x6d67
+ .debug_loclists
+                0x00000000       0xfd build/stm32/periph/src/misc.o
+ .debug_loclists
+                0x000000fd      0x8cf build/stm32/periph/src/stm32f4xx_adc.o
+ .debug_loclists
+                0x000009cc      0x3d5 build/stm32/periph/src/stm32f4xx_dac.o
+ .debug_loclists
+                0x00000da1      0x2d4 build/stm32/periph/src/stm32f4xx_dma.o
+ .debug_loclists
+                0x00001075      0x157 build/stm32/periph/src/stm32f4xx_exti.o
+ .debug_loclists
+                0x000011cc      0x5b1 build/stm32/periph/src/stm32f4xx_flash.o
+ .debug_loclists
+                0x0000177d      0x673 build/stm32/periph/src/stm32f4xx_fmc.o
+ .debug_loclists
+                0x00001df0      0x2f9 build/stm32/periph/src/stm32f4xx_gpio.o
+ .debug_loclists
+                0x000020e9      0x5fa build/stm32/periph/src/stm32f4xx_i2c.o
+ .debug_loclists
+                0x000026e3      0x53f build/stm32/periph/src/stm32f4xx_rcc.o
+ .debug_loclists
+                0x00002c22      0x58c build/stm32/periph/src/stm32f4xx_spi.o
+ .debug_loclists
+                0x000031ae       0x70 build/stm32/periph/src/stm32f4xx_syscfg.o
+ .debug_loclists
+                0x0000321e     0x12ca build/stm32/periph/src/stm32f4xx_tim.o
+ .debug_loclists
+                0x000044e8       0xeb build/stm32/device/src/system_stm32f4xx.o
+ .debug_loclists
+                0x000045d3       0x94 build/RAM_test.o
+ .debug_loclists
+                0x00004667       0xb6 build/adc.o
+ .debug_loclists
+                0x0000471d      0x3ce build/audio_memory.o
+ .debug_loclists
+                0x00004aeb      0x135 build/buttons_jacks.o
+ .debug_loclists
+                0x00004c20       0x63 build/calibration.o
+ .debug_loclists
+                0x00004c83      0x20f build/codec_CS4271.o
+ .debug_loclists
+                0x00004e92       0x5a build/compressor.o
+ .debug_loclists
+                0x00004eec      0x408 build/flash.o
+ .debug_loclists
+                0x000052f4      0x189 build/flash_user.o
+ .debug_loclists
+                0x0000547d       0x9d build/gpiof4.o
+ .debug_loclists
+                0x0000551a      0x192 build/i2s.o
+ .debug_loclists
+                0x000056ac      0x377 build/leds.o
+ .debug_loclists
+                0x00005a23      0x987 build/looping_delay.o
+ .debug_loclists
+                0x000063aa      0x117 build/main.o
+ .debug_loclists
+                0x000064c1      0x760 build/params.o
+ .debug_loclists
+                0x00006c21       0x15 build/sdram.o
+ .debug_loclists
+                0x00006c36      0x131 build/system_settings.o
+
+.debug_aranges  0x00000000      0x428
+ .debug_aranges
+                0x00000000       0x20 build/stm32/periph/src/misc.o
+ .debug_aranges
+                0x00000020       0x20 build/stm32/periph/src/stm32f4xx_adc.o
+ .debug_aranges
+                0x00000040       0x20 build/stm32/periph/src/stm32f4xx_dac.o
+ .debug_aranges
+                0x00000060       0x20 build/stm32/periph/src/stm32f4xx_dma.o
+ .debug_aranges
+                0x00000080       0x20 build/stm32/periph/src/stm32f4xx_exti.o
+ .debug_aranges
+                0x000000a0       0x20 build/stm32/periph/src/stm32f4xx_flash.o
+ .debug_aranges
+                0x000000c0       0x20 build/stm32/periph/src/stm32f4xx_fmc.o
+ .debug_aranges
+                0x000000e0       0x20 build/stm32/periph/src/stm32f4xx_gpio.o
+ .debug_aranges
+                0x00000100       0x20 build/stm32/periph/src/stm32f4xx_i2c.o
+ .debug_aranges
+                0x00000120       0x20 build/stm32/periph/src/stm32f4xx_rcc.o
+ .debug_aranges
+                0x00000140       0x20 build/stm32/periph/src/stm32f4xx_spi.o
+ .debug_aranges
+                0x00000160       0x20 build/stm32/periph/src/stm32f4xx_syscfg.o
+ .debug_aranges
+                0x00000180       0x20 build/stm32/periph/src/stm32f4xx_tim.o
+ .debug_aranges
+                0x000001a0       0x20 build/stm32/device/src/system_stm32f4xx.o
+ .debug_aranges
+                0x000001c0       0x20 build/RAM_test.o
+ .debug_aranges
+                0x000001e0       0x20 build/adc.o
+ .debug_aranges
+                0x00000200       0x20 build/audio_memory.o
+ .debug_aranges
+                0x00000220       0x20 build/buttons_jacks.o
+ .debug_aranges
+                0x00000240       0x20 build/calibration.o
+ .debug_aranges
+                0x00000260       0x20 build/codec_CS4271.o
+ .debug_aranges
+                0x00000280       0x20 build/compressor.o
+ .debug_aranges
+                0x000002a0       0x20 build/dig_pins.o
+ .debug_aranges
+                0x000002c0       0x20 build/flash.o
+ .debug_aranges
+                0x000002e0       0x20 build/flash_user.o
+ .debug_aranges
+                0x00000300       0x20 build/gpiof4.o
+ .debug_aranges
+                0x00000320       0x20 build/i2s.o
+ .debug_aranges
+                0x00000340       0x20 build/leds.o
+ .debug_aranges
+                0x00000360       0x20 build/looping_delay.o
+ .debug_aranges
+                0x00000380       0x28 build/main.o
+ .debug_aranges
+                0x000003a8       0x20 build/params.o
+ .debug_aranges
+                0x000003c8       0x20 build/sdram.o
+ .debug_aranges
+                0x000003e8       0x20 build/system_settings.o
+ .debug_aranges
+                0x00000408       0x20 build/timekeeper.o
+
+.debug_line     0x00000000     0xd772
+ .debug_line    0x00000000      0x25e build/stm32/periph/src/misc.o
+ .debug_line    0x0000025e      0x86b build/stm32/periph/src/stm32f4xx_adc.o
+ .debug_line    0x00000ac9      0x42e build/stm32/periph/src/stm32f4xx_dac.o
+ .debug_line    0x00000ef7      0x60f build/stm32/periph/src/stm32f4xx_dma.o
+ .debug_line    0x00001506      0x2d3 build/stm32/periph/src/stm32f4xx_exti.o
+ .debug_line    0x000017d9      0x8d3 build/stm32/periph/src/stm32f4xx_flash.o
+ .debug_line    0x000020ac      0xb61 build/stm32/periph/src/stm32f4xx_fmc.o
+ .debug_line    0x00002c0d      0x4d5 build/stm32/periph/src/stm32f4xx_gpio.o
+ .debug_line    0x000030e2      0x7ec build/stm32/periph/src/stm32f4xx_i2c.o
+ .debug_line    0x000038ce      0x938 build/stm32/periph/src/stm32f4xx_rcc.o
+ .debug_line    0x00004206      0x68b build/stm32/periph/src/stm32f4xx_spi.o
+ .debug_line    0x00004891      0x1f8 build/stm32/periph/src/stm32f4xx_syscfg.o
+ .debug_line    0x00004a89     0x1465 build/stm32/periph/src/stm32f4xx_tim.o
+ .debug_line    0x00005eee      0x3c6 build/stm32/device/src/system_stm32f4xx.o
+ .debug_line    0x000062b4      0x2ba build/RAM_test.o
+ .debug_line    0x0000656e      0x372 build/adc.o
+ .debug_line    0x000068e0      0x41b build/audio_memory.o
+ .debug_line    0x00006cfb      0xc16 build/buttons_jacks.o
+ .debug_line    0x00007911      0x44f build/calibration.o
+ .debug_line    0x00007d60      0x566 build/codec_CS4271.o
+ .debug_line    0x000082c6      0x180 build/compressor.o
+ .debug_line    0x00008446      0x2f7 build/dig_pins.o
+ .debug_line    0x0000873d      0x2a6 build/flash.o
+ .debug_line    0x000089e3      0x7b7 build/flash_user.o
+ .debug_line    0x0000919a      0x1b8 build/gpiof4.o
+ .debug_line    0x00009352      0x5e6 build/i2s.o
+ .debug_line    0x00009938      0x80f build/leds.o
+ .debug_line    0x0000a147      0xf0b build/looping_delay.o
+ .debug_line    0x0000b052      0x5b1 build/main.o
+ .debug_line    0x0000b603      0xf19 build/params.o
+ .debug_line    0x0000c51c      0x2ba build/sdram.o
+ .debug_line    0x0000c7d6      0xbb9 build/system_settings.o
+ .debug_line    0x0000d38f      0x3e3 build/timekeeper.o
+
+.debug_str      0x00000000     0x5eee
+ .debug_str     0x00000000     0x5eee build/stm32/periph/src/misc.o
+                                0x5ce (size before relaxing)
+ .debug_str     0x00005eee      0xa1b build/stm32/periph/src/stm32f4xx_adc.o
+ .debug_str     0x00005eee      0x66a build/stm32/periph/src/stm32f4xx_dac.o
+ .debug_str     0x00005eee      0x742 build/stm32/periph/src/stm32f4xx_dma.o
+ .debug_str     0x00005eee      0x54c build/stm32/periph/src/stm32f4xx_exti.o
+ .debug_str     0x00005eee      0x89f build/stm32/periph/src/stm32f4xx_flash.o
+ .debug_str     0x00005eee      0xc6b build/stm32/periph/src/stm32f4xx_fmc.o
+ .debug_str     0x00005eee      0x6c7 build/stm32/periph/src/stm32f4xx_gpio.o
+ .debug_str     0x00005eee      0x8db build/stm32/periph/src/stm32f4xx_i2c.o
+ .debug_str     0x00005eee      0xb9d build/stm32/periph/src/stm32f4xx_rcc.o
+ .debug_str     0x00005eee      0x8cb build/stm32/periph/src/stm32f4xx_spi.o
+ .debug_str     0x00005eee      0x525 build/stm32/periph/src/stm32f4xx_syscfg.o
+ .debug_str     0x00005eee      0xffe build/stm32/periph/src/stm32f4xx_tim.o
+ .debug_str     0x00005eee      0x5ca build/stm32/device/src/system_stm32f4xx.o
+ .debug_str     0x00005eee      0x41f build/RAM_test.o
+ .debug_str     0x00005eee      0x8f6 build/adc.o
+ .debug_str     0x00005eee      0x485 build/audio_memory.o
+ .debug_str     0x00005eee     0x107e build/buttons_jacks.o
+ .debug_str     0x00005eee      0x65a build/calibration.o
+ .debug_str     0x00005eee      0x974 build/codec_CS4271.o
+ .debug_str     0x00005eee      0x3f4 build/compressor.o
+ .debug_str     0x00005eee      0x56a build/dig_pins.o
+ .debug_str     0x00005eee      0x582 build/flash.o
+ .debug_str     0x00005eee      0xcda build/flash_user.o
+ .debug_str     0x00005eee      0x3f2 build/gpiof4.o
+ .debug_str     0x00005eee      0xe3c build/i2s.o
+ .debug_str     0x00005eee      0xf87 build/leds.o
+ .debug_str     0x00005eee      0xbe8 build/looping_delay.o
+ .debug_str     0x00005eee      0x8e6 build/main.o
+ .debug_str     0x00005eee      0xb00 build/params.o
+ .debug_str     0x00005eee      0x539 build/sdram.o
+ .debug_str     0x00005eee      0x9c6 build/system_settings.o
+ .debug_str     0x00005eee     0x1074 build/timekeeper.o
+
+.comment        0x00000000       0x46
+ .comment       0x00000000       0x46 build/stm32/periph/src/misc.o
+                                 0x47 (size before relaxing)
+ .comment       0x00000046       0x47 build/stm32/periph/src/stm32f4xx_adc.o
+ .comment       0x00000046       0x47 build/stm32/periph/src/stm32f4xx_dac.o
+ .comment       0x00000046       0x47 build/stm32/periph/src/stm32f4xx_dma.o
+ .comment       0x00000046       0x47 build/stm32/periph/src/stm32f4xx_exti.o
+ .comment       0x00000046       0x47 build/stm32/periph/src/stm32f4xx_flash.o
+ .comment       0x00000046       0x47 build/stm32/periph/src/stm32f4xx_fmc.o
+ .comment       0x00000046       0x47 build/stm32/periph/src/stm32f4xx_gpio.o
+ .comment       0x00000046       0x47 build/stm32/periph/src/stm32f4xx_i2c.o
+ .comment       0x00000046       0x47 build/stm32/periph/src/stm32f4xx_rcc.o
+ .comment       0x00000046       0x47 build/stm32/periph/src/stm32f4xx_spi.o
+ .comment       0x00000046       0x47 build/stm32/periph/src/stm32f4xx_syscfg.o
+ .comment       0x00000046       0x47 build/stm32/periph/src/stm32f4xx_tim.o
+ .comment       0x00000046       0x47 build/stm32/device/src/system_stm32f4xx.o
+ .comment       0x00000046       0x47 build/RAM_test.o
+ .comment       0x00000046       0x47 build/adc.o
+ .comment       0x00000046       0x47 build/audio_memory.o
+ .comment       0x00000046       0x47 build/buttons_jacks.o
+ .comment       0x00000046       0x47 build/calibration.o
+ .comment       0x00000046       0x47 build/codec_CS4271.o
+ .comment       0x00000046       0x47 build/compressor.o
+ .comment       0x00000046       0x47 build/dig_pins.o
+ .comment       0x00000046       0x47 build/flash.o
+ .comment       0x00000046       0x47 build/flash_user.o
+ .comment       0x00000046       0x47 build/gpiof4.o
+ .comment       0x00000046       0x47 build/i2s.o
+ .comment       0x00000046       0x47 build/leds.o
+ .comment       0x00000046       0x47 build/looping_delay.o
+ .comment       0x00000046       0x47 build/main.o
+ .comment       0x00000046       0x47 build/params.o
+ .comment       0x00000046       0x47 build/sdram.o
+ .comment       0x00000046       0x47 build/system_settings.o
+ .comment       0x00000046       0x47 build/timekeeper.o
+
+.ARM.attributes
+                0x00000000       0x32
+ .ARM.attributes
+                0x00000000       0x34 build/stm32/periph/src/misc.o
+ .ARM.attributes
+                0x00000034       0x34 build/stm32/periph/src/stm32f4xx_adc.o
+ .ARM.attributes
+                0x00000068       0x34 build/stm32/periph/src/stm32f4xx_dac.o
+ .ARM.attributes
+                0x0000009c       0x34 build/stm32/periph/src/stm32f4xx_dma.o
+ .ARM.attributes
+                0x000000d0       0x34 build/stm32/periph/src/stm32f4xx_exti.o
+ .ARM.attributes
+                0x00000104       0x34 build/stm32/periph/src/stm32f4xx_flash.o
+ .ARM.attributes
+                0x00000138       0x34 build/stm32/periph/src/stm32f4xx_fmc.o
+ .ARM.attributes
+                0x0000016c       0x34 build/stm32/periph/src/stm32f4xx_gpio.o
+ .ARM.attributes
+                0x000001a0       0x34 build/stm32/periph/src/stm32f4xx_i2c.o
+ .ARM.attributes
+                0x000001d4       0x34 build/stm32/periph/src/stm32f4xx_rcc.o
+ .ARM.attributes
+                0x00000208       0x34 build/stm32/periph/src/stm32f4xx_spi.o
+ .ARM.attributes
+                0x0000023c       0x34 build/stm32/periph/src/stm32f4xx_syscfg.o
+ .ARM.attributes
+                0x00000270       0x34 build/stm32/periph/src/stm32f4xx_tim.o
+ .ARM.attributes
+                0x000002a4       0x25 build/stm32/device/src/startup_stm32f427_437xx.o
+ .ARM.attributes
+                0x000002c9       0x34 build/stm32/device/src/system_stm32f4xx.o
+ .ARM.attributes
+                0x000002fd       0x34 build/RAM_test.o
+ .ARM.attributes
+                0x00000331       0x34 build/adc.o
+ .ARM.attributes
+                0x00000365       0x34 build/audio_memory.o
+ .ARM.attributes
+                0x00000399       0x34 build/buttons_jacks.o
+ .ARM.attributes
+                0x000003cd       0x34 build/calibration.o
+ .ARM.attributes
+                0x00000401       0x34 build/codec_CS4271.o
+ .ARM.attributes
+                0x00000435       0x34 build/compressor.o
+ .ARM.attributes
+                0x00000469       0x34 build/dig_pins.o
+ .ARM.attributes
+                0x0000049d       0x34 build/flash.o
+ .ARM.attributes
+                0x000004d1       0x34 build/flash_user.o
+ .ARM.attributes
+                0x00000505       0x34 build/gpiof4.o
+ .ARM.attributes
+                0x00000539       0x34 build/i2s.o
+ .ARM.attributes
+                0x0000056d       0x34 build/leds.o
+ .ARM.attributes
+                0x000005a1       0x34 build/looping_delay.o
+ .ARM.attributes
+                0x000005d5       0x34 build/main.o
+ .ARM.attributes
+                0x00000609       0x34 build/params.o
+ .ARM.attributes
+                0x0000063d       0x34 build/sdram.o
+ .ARM.attributes
+                0x00000671       0x34 build/system_settings.o
+ .ARM.attributes
+                0x000006a5       0x34 build/timekeeper.o
+
+.debug_frame    0x00000000     0x2b54
+ .debug_frame   0x00000000       0x60 build/stm32/periph/src/misc.o
+ .debug_frame   0x00000060      0x2b4 build/stm32/periph/src/stm32f4xx_adc.o
+ .debug_frame   0x00000314      0x150 build/stm32/periph/src/stm32f4xx_dac.o
+ .debug_frame   0x00000464      0x14c build/stm32/periph/src/stm32f4xx_dma.o
+ .debug_frame   0x000005b0       0xa0 build/stm32/periph/src/stm32f4xx_exti.o
+ .debug_frame   0x00000650      0x348 build/stm32/periph/src/stm32f4xx_flash.o
+ .debug_frame   0x00000998      0x210 build/stm32/periph/src/stm32f4xx_fmc.o
+ .debug_frame   0x00000ba8      0x168 build/stm32/periph/src/stm32f4xx_gpio.o
+ .debug_frame   0x00000d10      0x284 build/stm32/periph/src/stm32f4xx_i2c.o
+ .debug_frame   0x00000f94      0x374 build/stm32/periph/src/stm32f4xx_rcc.o
+ .debug_frame   0x00001308      0x1ec build/stm32/periph/src/stm32f4xx_spi.o
+ .debug_frame   0x000014f4       0x8c build/stm32/periph/src/stm32f4xx_syscfg.o
+ .debug_frame   0x00001580      0x6d4 build/stm32/periph/src/stm32f4xx_tim.o
+ .debug_frame   0x00001c54       0x3c build/stm32/device/src/system_stm32f4xx.o
+ .debug_frame   0x00001c90       0x54 build/RAM_test.o
+ .debug_frame   0x00001ce4       0x90 build/adc.o
+ .debug_frame   0x00001d74       0xa0 build/audio_memory.o
+ .debug_frame   0x00001e14       0x80 build/buttons_jacks.o
+ .debug_frame   0x00001e94       0x70 build/calibration.o
+ .debug_frame   0x00001f04      0x120 build/codec_CS4271.o
+ .debug_frame   0x00002024       0x30 build/compressor.o
+ .debug_frame   0x00002054       0x40 build/dig_pins.o
+ .debug_frame   0x00002094       0xec build/flash.o
+ .debug_frame   0x00002180       0xe8 build/flash_user.o
+ .debug_frame   0x00002268       0x2c build/gpiof4.o
+ .debug_frame   0x00002294      0x180 build/i2s.o
+ .debug_frame   0x00002414       0xd8 build/leds.o
+ .debug_frame   0x000024ec      0x228 build/looping_delay.o
+ .debug_frame   0x00002714      0x100 build/main.o
+ .debug_frame   0x00002814      0x174 build/params.o
+ .debug_frame   0x00002988       0x34 build/sdram.o
+ .debug_frame   0x000029bc       0xb4 build/system_settings.o
+ .debug_frame   0x00002a70       0xe4 build/timekeeper.o
+
+.debug_rnglists
+                0x00000000      0x1b7
+ .debug_rnglists
+                0x00000000       0x16 build/stm32/device/src/system_stm32f4xx.o
+ .debug_rnglists
+                0x00000016       0x13 build/calibration.o
+ .debug_rnglists
+                0x00000029       0x22 build/codec_CS4271.o
+ .debug_rnglists
+                0x0000004b       0x2d build/flash_user.o
+ .debug_rnglists
+                0x00000078       0xa6 build/leds.o
+ .debug_rnglists
+                0x0000011e       0x3f build/main.o
+ .debug_rnglists
+                0x0000015d       0x46 build/params.o
+ .debug_rnglists
+                0x000001a3       0x14 build/sdram.o

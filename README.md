@@ -1,4 +1,12 @@
 # DLD
+
+## My Custom Firmware "DLD Live Techno":
+
+Time is limited to x2, x4, x8, x16 looping for easier techno build-ups.
+
+Added quicker (1s) RAM clear (Hold + Reverse button hold) for faster live performance.
+
+
 ## Dual Looping Delay
 
 Firmware for the Dual Looping Delay, a Eurorack-format module from 4ms Company.
